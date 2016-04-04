@@ -1,0 +1,7 @@
+<!-- defines our GWT module -->
+<module>
+    <inherits name="playn.Scene"/>
+    <inherits name="tripleplay.TriplePlay"/>
+
+    <source path="playn_util"/>
+</module>

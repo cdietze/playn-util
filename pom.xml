@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.playn</groupId>
+        <artifactId>playn-project</artifactId>
+        <version>2.0-rc3</version>
+    </parent>
+
+    <groupId>de.cdietze.playn-util</groupId>
+    <artifactId>playn-util</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <playn.version>2.0-rc3</playn.version>
+        <guava.version>19.0</guava.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.playn</groupId>
+            <artifactId>playn-core</artifactId>
+            <version>${playn.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.threerings</groupId>
+            <artifactId>tripleplay</artifactId>
+            <version>${playn.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+    </build>
+</project>

@@ -18,12 +18,13 @@ public abstract class Screen extends ScreenStack.UIScreen {
     public final Platform plat;
 
     private final Game game;
-    private final DialogKeeper dialogKeeper = new DialogKeeper();
+    private final DialogKeeper dialogKeeper;
 
     public Screen(Game game) {
         super(game.plat);
         this.game = game;
         this.plat = game.plat;
+        this.dialogKeeper = new DialogKeeper(this);
         update.connect(updateAnim.onPaint);
     }
 

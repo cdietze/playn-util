@@ -24,6 +24,12 @@ public class DialogKeeper {
     private float dialogDepth = 100f;
     private final List<Dialog> dialogs = new ArrayList<>();
 
+    private final ScreenStack.Screen screen;
+
+    public DialogKeeper(ScreenStack.Screen screen) {
+        this.screen = screen;
+    }
+
     public class Dialog implements Closeable {
         /**
          * The root that contains this dialog UI.
@@ -333,14 +339,14 @@ public class DialogKeeper {
     }
 
 
-    static class ShaderLayer extends Layer {
+    class ShaderLayer extends Layer {
 
         float alpha = 0f;
 
         @Override
         protected void paintImpl(Surface surf) {
             surf.setAlpha(alpha);
-            surf.setFillColor(Colors.BLACK).fillRect(0, 0, width(), height());
+            surf.setFillColor(Colors.BLACK).fillRect(0, 0, screen.size().width(), screen.size().height());
         }
 
         public Animation.Value alphaValue() {

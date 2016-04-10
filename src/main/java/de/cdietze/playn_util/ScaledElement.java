@@ -1,7 +1,6 @@
 package de.cdietze.playn_util;
 
 import playn.scene.Layer;
-import pythagoras.f.IDimension;
 import tripleplay.ui.Element;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -13,19 +12,17 @@ public class ScaledElement extends Element<ScaledElement> {
 
     private static float maxScale(float aspectRatio, float viewWidth, float viewHeight) {
         checkArgument(aspectRatio > 0f);
-        checkArgument(viewWidth > 0f);
-        checkArgument(viewHeight > 0f);
+        checkArgument(viewWidth > 0f && viewHeight > 0f, "view width and height must be greater than 0, are you using a stretching layout?");
         float maxWidthIfHeightRestricted = viewHeight * aspectRatio;
         float maxWidth = Math.min(viewWidth, maxWidthIfHeightRestricted);
         return maxWidth / viewWidth;
     }
 
     private final Layer worldLayer;
-    private final IDimension worldSize;
 
-    public ScaledElement(Layer layer, IDimension worldSize) {
+    public ScaledElement(Layer layer) {
         worldLayer = layer;
-        this.worldSize = worldSize;
+        checkArgument(layer.width() > 0f && layer.height() > 0f, "The layer must have a size.");
         this.layer.add(layer);
     }
 
@@ -34,10 +31,10 @@ public class ScaledElement extends Element<ScaledElement> {
         return new LayoutData() {
             @Override
             public void layout(float left, float top, float width, float height) {
-                float ratio = worldSize.width() / worldSize.height();
+                float ratio = worldLayer.width() / worldLayer.height();
                 float scale = maxScale(ratio, width, height);
                 worldLayer.setTranslation(left + width * .5f, top + height * .5f);
-                worldLayer.setScale(scale * width / worldSize.width());
+                worldLayer.setScale(scale * width / worldLayer.width());
             }
         };
     }

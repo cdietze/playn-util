@@ -7,6 +7,7 @@ import tripleplay.game.ScreenStack;
 import tripleplay.ui.Element;
 import tripleplay.ui.Layout;
 import tripleplay.ui.SimpleStyles;
+import tripleplay.ui.Stylesheet;
 import tripleplay.ui.layout.AxisLayout;
 
 public abstract class Screen extends ScreenStack.UIScreen {
@@ -45,14 +46,14 @@ public abstract class Screen extends ScreenStack.UIScreen {
     /**
      * Returns a dialog with the supplied root layout.
      */
-    public DialogKeeper.Dialog createDialog(Layout layout) {
-        return dialogKeeper.new Dialog(this, iface.createRoot(layout, SimpleStyles.newSheet(plat.graphics()), layer));
+    public DialogKeeper.Dialog createDialog(Layout layout, Stylesheet stylesheet) {
+        return dialogKeeper.new Dialog(this, iface.createRoot(layout, stylesheet, layer));
     }
 
     /**
      * Returns a dialog with a vertical axis layout.
      */
     public DialogKeeper.Dialog createDialog() {
-        return createDialog(AxisLayout.vertical());
+        return createDialog(AxisLayout.vertical(), SimpleStyles.newSheet(plat.graphics()));
     }
 }

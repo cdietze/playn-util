@@ -7,6 +7,7 @@ import pythagoras.f.Point;
 import react.*;
 import tripleplay.anim.Animation;
 import tripleplay.game.ScreenStack;
+import tripleplay.ui.Element;
 import tripleplay.ui.Root;
 import tripleplay.ui.Style;
 import tripleplay.util.Colors;
@@ -61,6 +62,12 @@ public class DialogKeeper {
         Dialog(Screen screen, Root root) {
             this.screen = screen;
             this.root = root;
+        }
+
+        /** Adds an element to this Dialog. Supports chaining. */
+        public Dialog add(Element<?> element) {
+            root.add(element);
+            return this;
         }
 
         /**

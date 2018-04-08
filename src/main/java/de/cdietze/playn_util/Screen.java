@@ -29,11 +29,6 @@ public abstract class Screen extends ScreenStack.UIScreen {
         update.connect(updateAnim.onPaint);
     }
 
-    @Override
-    public Game game() {
-        return game;
-    }
-
     /**
      * Returns a dialog which contains the supplied contents.
      */

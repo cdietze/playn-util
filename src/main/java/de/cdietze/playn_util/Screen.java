@@ -22,7 +22,7 @@ public abstract class Screen extends ScreenStack.UIScreen {
     private final DialogKeeper dialogKeeper;
 
     public Screen(Game game) {
-        super(game.plat);
+        super(game);
         this.game = game;
         this.plat = game.plat;
         this.dialogKeeper = new DialogKeeper(this);

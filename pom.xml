@@ -9,7 +9,7 @@
         <version>2.0-rc3</version>
     </parent>
 
-    <groupId>de.cdietze.playn-util</groupId>
+    <groupId>com.github.cdietze</groupId>
     <artifactId>playn-util</artifactId>
     <version>0.2-SNAPSHOT</version>
 

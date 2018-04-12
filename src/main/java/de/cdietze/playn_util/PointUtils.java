@@ -35,7 +35,9 @@ public class PointUtils {
     return proxyPath(dim, index, Math.max(dim.width(), dim.height()));
   }
 
-  /** Returns a list of indexes with increasing distance to index. */
+  /**
+   * Returns a list of indexes with increasing distance to index.
+   */
   public static List<Integer> proxyPath(IDimension dim, int index, int maxDist) {
     int x = toX(dim, index);
     int y = toY(dim, index);
@@ -71,6 +73,9 @@ public class PointUtils {
   private static void addIfContains(IDimension dim, Collection<Integer> coll, int x, int y) {
     if (contains(dim, x, y)) coll.add(toIndex(dim, x, y));
   }
+  private static void setIfContains(IDimension dim, BitSet set, int x, int y) {
+    if (contains(dim, x, y)) set.set(toIndex(dim, x, y));
+  }
 
   public static List<Point> neighbors(IDimension dim, IPoint p) {
     ImmutableList.Builder<Point> builder = ImmutableList.builder();
@@ -81,7 +86,9 @@ public class PointUtils {
     return builder.build();
   }
 
-  /** @return a BitSet with all orthogonal neighbors of index. Checks that the fields are in bounds of dim. */
+  /**
+   * @return a BitSet with all orthogonal neighbors of index. Checks that the fields are in bounds of dim.
+   */
   public static BitSet neighbors(IDimension dim, int index, BitSet result) {
     int x = toX(dim, index);
     int y = toY(dim, index);
@@ -89,6 +96,24 @@ public class PointUtils {
     if (y > 0) result.set(toIndex(dim, x, y - 1));
     if (x < dim.width() - 1) result.set(toIndex(dim, x + 1, y));
     if (y < dim.height() - 1) result.set(toIndex(dim, x, y + 1));
+    return result;
+  }
+
+  /**
+   * @return a BitSet with all bordering (= orthogonal and diagonal) neighbors of index.
+   * Checks that the fields are in bounds of dim.
+   */
+  public static BitSet borderingNeighbors(IDimension dim, int index, BitSet result) {
+    int x = toX(dim, index);
+    int y = toY(dim, index);
+    setIfContains(dim, result, x - 1, y - 1);
+    setIfContains(dim, result, x, y - 1);
+    setIfContains(dim, result, x + 1, y - 1);
+    setIfContains(dim, result, x + 1, y);
+    setIfContains(dim, result, x + 1, y + 1);
+    setIfContains(dim, result, x, y + 1);
+    setIfContains(dim, result, x - 1, y + 1);
+    setIfContains(dim, result, x - 1, y);
     return result;
   }
 
